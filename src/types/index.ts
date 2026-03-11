@@ -1,0 +1,92 @@
+/**
+ * Health data types
+ */
+
+export interface HealthData {
+  steps: number;
+  calories: number;
+  distance: number;
+  heartRate: number;
+  activeMinutes: number;
+}
+
+export interface HealthMetric {
+  value: number;
+  unit: string;
+  timestamp: Date;
+  source: 'healthkit' | 'googlefit' | 'manual';
+}
+
+export interface DailyHealthSummary {
+  date: string;
+  steps: number;
+  calories: number;
+  distance: number;
+  activeMinutes: number;
+  sleepHours: number;
+  waterIntake: number;
+}
+
+export interface HealthGoal {
+  id: string;
+  type: 'steps' | 'calories' | 'distance' | 'activeMinutes' | 'water';
+  target: number;
+  current: number;
+  unit: string;
+}
+
+/**
+ * User types
+ */
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  avatar?: string;
+  preferences: UserPreferences;
+}
+
+export interface UserPreferences {
+  units: 'metric' | 'imperial';
+  notifications: boolean;
+  darkMode: 'system' | 'light' | 'dark';
+  dailyGoals: {
+    steps: number;
+    calories: number;
+    water: number;
+  };
+}
+
+/**
+ * Navigation types
+ */
+
+export type RootStackParamList = {
+  Onboarding: undefined;
+  Auth: undefined;
+  Main: undefined;
+};
+
+export type MainTabParamList = {
+  Dashboard: undefined;
+  Activity: undefined;
+  Profile: undefined;
+  Settings: undefined;
+};
+
+/**
+ * API types
+ */
+
+export interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+  message?: string;
+}
+
+export interface SyncStatus {
+  lastSynced: Date | null;
+  pendingChanges: number;
+  isSyncing: boolean;
+}
