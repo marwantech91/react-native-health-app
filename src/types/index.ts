@@ -90,3 +90,20 @@ export interface SyncStatus {
   pendingChanges: number;
   isSyncing: boolean;
 }
+
+/**
+ * Workout types
+ */
+
+export type WorkoutType = 'running' | 'walking' | 'cycling' | 'swimming' | 'strength' | 'yoga' | 'other';
+
+export interface Workout {
+  id: string;
+  type: WorkoutType;
+  startTime: Date;
+  endTime: Date;
+  calories: number;
+  distance?: number;
+  heartRateAvg?: number;
+  notes?: string;
+}
