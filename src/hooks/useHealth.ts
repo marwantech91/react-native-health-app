@@ -55,6 +55,14 @@ export function useHealth() {
     return () => clearInterval(interval);
   }, [fetchHealthData]);
 
+  const getGoalProgress = useCallback(
+    (metric: keyof HealthData, target: number): number => {
+      const current = data[metric];
+      return Math.min(current / target, 1);
+    },
+    [data]
+  );
+
   return {
     ...data,
     isLoading,
@@ -62,6 +70,7 @@ export function useHealth() {
     lastSynced,
     syncData,
     refetch: fetchHealthData,
+    getGoalProgress,
   };
 }
 
