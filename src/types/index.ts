@@ -107,3 +107,10 @@ export interface Workout {
   heartRateAvg?: number;
   notes?: string;
 }
+
+/**
+ * Calculate workout duration in minutes
+ */
+export function getWorkoutDuration(workout: Workout): number {
+  return (workout.endTime.getTime() - workout.startTime.getTime()) / 60000;
+}
