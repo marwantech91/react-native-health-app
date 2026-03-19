@@ -114,3 +114,11 @@ export interface Workout {
 export function getWorkoutDuration(workout: Workout): number {
   return (workout.endTime.getTime() - workout.startTime.getTime()) / 60000;
 }
+
+export function isGoalMet(goal: HealthGoal): boolean {
+  return goal.current >= goal.target;
+}
+
+export function goalProgress(goal: HealthGoal): number {
+  return Math.min(1, goal.current / goal.target);
+}
