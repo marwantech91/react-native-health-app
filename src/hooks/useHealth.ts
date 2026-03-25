@@ -57,11 +57,16 @@ export function useHealth() {
 
   const getGoalProgress = useCallback(
     (metric: keyof HealthData, target: number): number => {
+      if (target <= 0) return 0;
       const current = data[metric];
       return Math.min(current / target, 1);
     },
     [data]
   );
+
+  const getDailySummary = useCallback((): string => {
+    return `${data.steps} steps, ${data.calories} cal, ${data.distance} km`;
+  }, [data]);
 
   return {
     ...data,
@@ -71,6 +76,7 @@ export function useHealth() {
     syncData,
     refetch: fetchHealthData,
     getGoalProgress,
+    getDailySummary,
   };
 }
 
