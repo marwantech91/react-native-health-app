@@ -122,3 +122,8 @@ export function isGoalMet(goal: HealthGoal): boolean {
 export function goalProgress(goal: HealthGoal): number {
   return Math.min(1, goal.current / goal.target);
 }
+
+/** Calculate remaining amount needed to reach a health goal */
+export function goalRemaining(goal: HealthGoal): number {
+  return Math.max(0, goal.target - goal.current);
+}
