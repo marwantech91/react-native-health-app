@@ -127,3 +127,22 @@ export function goalProgress(goal: HealthGoal): number {
 export function goalRemaining(goal: HealthGoal): number {
   return Math.max(0, goal.target - goal.current);
 }
+
+/** Calculate total calories burned across multiple workouts */
+export function totalCaloriesBurned(workouts: Workout[]): number {
+  return workouts.reduce((sum, w) => sum + w.calories, 0);
+}
+
+/** Get total workout duration in minutes for a list of workouts */
+export function totalWorkoutMinutes(workouts: Workout[]): number {
+  return workouts.reduce((sum, w) => sum + getWorkoutDuration(w), 0);
+}
+
+/** Group workouts by type and return counts */
+export function workoutsByType(workouts: Workout[]): Record<WorkoutType, number> {
+  const counts = {} as Record<WorkoutType, number>;
+  for (const w of workouts) {
+    counts[w.type] = (counts[w.type] || 0) + 1;
+  }
+  return counts;
+}
